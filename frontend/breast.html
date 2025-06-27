@@ -58,7 +58,7 @@
       const data = {};
       formData.forEach((value, key) => data[key] = value);
 
-      const response = await fetch("http://localhost:5000/predict/breast",{
+      const response = await fetch("https://chronicdiseaseindicator.onrender.com/predict/breast",{
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
