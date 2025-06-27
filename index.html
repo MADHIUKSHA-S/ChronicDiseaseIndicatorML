@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Disease Prediction Portal</title>
+  <style>
+    body {
+      font-family: Arial;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 50px;
+    }
+    h2 {
+      margin-bottom: 30px;
+    }
+    select, button {
+      padding: 10px;
+      font-size: 16px;
+      margin-top: 10px;
+      width: 250px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Select Disease to Predict</h2>
+
+  <select id="diseaseSelect">
+    <option value="">-- Choose an option --</option>
+    <option value="breast.html">Breast Cancer</option>
+    <option value="diabetes.html">Diabetes</option>
+    <option value="heart.html">Heart Disease</option>
+  </select>
+
+  <button onclick="navigateToForm()">Continue</button>
+
+  <script>
+    function navigateToForm() {
+      const selected = document.getElementById("diseaseSelect").value;
+      if (selected) {
+        window.location.href = selected;
+      } else {
+        alert("Please select a disease.");
+      }
+    }
+  </script>
+
+</body>
+</html>

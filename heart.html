@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Heart Disease Predictor</title>
+  <style>
+    body { font-family: Arial; max-width: 600px; margin: auto; padding: 20px; }
+    label { font-weight: bold; margin-top: 15px; display: block; }
+    input, button { width: 100%; margin: 5px 0 15px 0; padding: 8px; }
+    .result { margin-top: 20px; font-size: 1.2em; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h2>Heart Disease Predictor</h2>
+  <form id="predictForm">
+    <label>Age (years)</label>
+    <input type="number" name="age" placeholder="Example: 54" required>
+
+    <label>Sex (1 = Male, 0 = Female)</label>
+    <input type="number" name="sex" placeholder="Example: 1" required>
+
+    <label>Chest Pain Type (1–4)</label>
+    <input type="number" name="chest pain type" placeholder="Example: 3" required>
+
+    <label>Resting Blood Pressure (mm Hg)</label>
+    <input type="number" name="resting blood pressure" placeholder="Example: 130" required>
+
+    <label>Serum Cholestoral (mg/dL)</label>
+    <input type="number" name="serum cholestoral" placeholder="Example: 250" required>
+
+    <label>Fasting Blood Sugar (1 = Yes, 0 = No)</label>
+    <input type="number" name="fasting blood sugar" placeholder="Example: 0" required>
+
+    <label>Resting ECG Results (0–2)</label>
+    <input type="number" name="resting electrocardiographic results" placeholder="Example: 1" required>
+
+    <label>Max Heart Rate Achieved</label>
+    <input type="number" name="max heart rate" placeholder="Example: 150" required>
+
+    <label>Exercise Induced Angina (1 = Yes, 0 = No)</label>
+    <input type="number" name="exercise induced angina" placeholder="Example: 0" required>
+
+    <label>Oldpeak (ST depression)</label>
+    <input type="number" step="any" name="oldpeak" placeholder="Example: 1.4" required>
+
+    <label>ST Segment (1 = flat, 2 = upsloping, etc.)</label>
+    <input type="number" name="ST segment" placeholder="Example: 2" required>
+
+    <label>Number of Major Vessels (0–3)</label>
+    <input type="number" name="major vessels" placeholder="Example: 0" required>
+
+    <label>Thal (3 = normal, 6 = fixed defect, 7 = reversible)</label>
+    <input type="number" name="thal" placeholder="Example: 7" required>
+
+    <button type="submit">Predict</button>
+  </form>
+
+  <div class="result" id="resultBox"></div>
+
+  <script>
+    document.getElementById("predictForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const data = {};
+      formData.forEach((value, key) => data[key] = value);
+
+      const response = await fetch("http://localhost:5000/predict/heart",  {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+
+      const result = await response.json();
+      document.getElementById("resultBox").innerText = "Prediction: " + result.prediction;
+    });
+  </script>
+</body>
+</html>

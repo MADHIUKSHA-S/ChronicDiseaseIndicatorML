@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Breast Cancer Predictor</title>
+  <style>
+    body {
+      font-family: Arial;
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+    }
+    label {
+      font-weight: bold;
+      margin-top: 15px;
+      display: block;
+    }
+    input, button {
+      margin: 5px 0 15px 0;
+      padding: 8px;
+      width: 100%;
+    }
+    .result {
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+  </style>
+</head>
+<body>
+  <h2>Breast Cancer Predictor</h2>
+  <form id="predictForm">
+    
+    <label for="mean_radius">Mean Radius (in mm)</label>
+    <input type="number" step="any" name="mean_radius" id="mean_radius" placeholder="Example: 14.0" required />
+
+    <label for="mean_texture">Mean Texture (variation in gray scale)</label>
+    <input type="number" step="any" name="mean_texture" id="mean_texture" placeholder="Example: 20.0" required />
+
+    <label for="mean_perimeter">Mean Perimeter (in mm)</label>
+    <input type="number" step="any" name="mean_perimeter" id="mean_perimeter" placeholder="Example: 89.0" required />
+
+    <label for="mean_area">Mean Area (in pixel units)</label>
+    <input type="number" step="any" name="mean_area" id="mean_area" placeholder="Example: 600.0" required />
+
+    <label for="mean_smoothness">Mean Smoothness (0.05 - 0.15 range)</label>
+    <input type="number" step="any" name="mean_smoothness" id="mean_smoothness" placeholder="Example: 0.09" required />
+
+    <button type="submit">Predict</button>
+  </form>
+
+  <div class="result" id="resultBox"></div>
+
+  <script>
+    document.getElementById("predictForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const formData = new FormData(e.target);
+      const data = {};
+      formData.forEach((value, key) => data[key] = value);
+
+      const response = await fetch("http://localhost:5000/predict/breast",{
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+
+      const result = await response.json();
+      document.getElementById("resultBox").innerText = "Prediction: " + result.prediction;
+    });
+  </script>
+</body>
+</html>
