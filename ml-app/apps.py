@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 import numpy as np
 import pickle
 from flask_cors import CORS
-
+import os
 app = Flask(__name__)
 CORS(app)
 
@@ -69,7 +69,7 @@ def predict(disease):
         return jsonify({"error": f"Missing field: {str(e)}"}), 400
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
-if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=10000)
+if __name__ == '__main__':
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host='0.0.0.0', port=port)
 # This code defines a Flask application that serves as an API for predicting multiple diseases using pre-trained AdaBoost models.
