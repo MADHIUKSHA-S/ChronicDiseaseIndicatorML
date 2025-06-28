@@ -56,8 +56,8 @@ The solution compares various algorithms and deploys the most accurate one — *
 ## 📝 How to Run Locally
 
 ### 1. Clone the Repository
-git clone https://github.com/MADHIUKSHA-S/chronic-disease-indicator
-cd chronic-disease-indicator
+- git clone https://github.com/MADHIUKSHA-S/chronic-disease-indicator
+- cd chronic-disease-indicator
 ### 2. Install Requirements
 pip install -r requirements.txt
 ### 3. Run the App
