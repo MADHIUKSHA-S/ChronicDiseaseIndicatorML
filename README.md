@@ -46,27 +46,19 @@ The solution compares various algorithms and deploys the most accurate one — *
 
 ## 🚀 Deployment Links
 
-- 🔗 **Frontend (Vercel):** [your-vercel-link]
-- 🔗 **Backend API (Render):** [your-render-link]
+- 🔗 **Frontend (Vercel):** https://chronic-disease-indicator.vercel.app/
+- 🔗 **Backend API (Render):** https://chronicdiseaseindicator.onrender.com
 
-> Update these links after deployment
+
 
 ---
 
 ## 📝 How to Run Locally
 
 ### 1. Clone the Repository
-
-```bash
-git clone https://github.com/your-username/chronic-disease-indicator
-cd chronic-disease-indicator```
+git clone https://github.com/MADHIUKSHA-S/chronic-disease-indicator
+cd chronic-disease-indicator
 ### 2. Install Requirements
-```bash
-Copy
-Edit
-pip install -r requirements.txt```
+pip install -r requirements.txt
 ### 3. Run the App
-```bash
-Copy
-Edit
-python app.py```
+python app.py
