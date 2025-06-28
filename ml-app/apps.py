@@ -57,7 +57,7 @@ def predict(disease):
         prediction = model.predict(input_array)[0]
 
         if disease == "breast":
-            result = "Malignant" if prediction == 1 else "Benign"
+            result = "Cancerous" if prediction == 1 else "Non-Cancerous"
         elif disease == "diabetes":
             result = "Diabetic" if prediction == 1 else "Non-Diabetic"
         else:  # heart
